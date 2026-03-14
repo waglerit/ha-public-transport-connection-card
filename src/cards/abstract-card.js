@@ -42,6 +42,7 @@ class PublicTransprtAbstractCard extends LitElement {
     static AVAILABLE_THEMES = [
         'deutsche-bahn',
         'homeassistant',
+        'inkplate'
     ];
 
     /**
@@ -204,6 +205,24 @@ class PublicTransprtAbstractCard extends LitElement {
             .ptc-theme-homeassistant h1 {
                 color: var(--ha-card-header-color, --primary-text-color);
             }
+            
+            /** Inkplate High Contrast Theme **/
+            .ptc-theme-inkplate {
+                --public-transport-card-background-color: #ffffff;
+                --public-transport-card-foreground-color: #000000;
+                --public-transport-card-size: 12px;
+            }
+            
+            .ptc-theme-inkplate ha-card {
+                border: 2px solid #000000;
+                box-shadow: none;
+            }
+            
+            .ptc-theme-inkplate .ptc-time-bar-line, 
+            .ptc-theme-inkplate .ptc-time-bar-bullet {
+                background-color: #000000;
+            }
+            
         `;
     }
 
