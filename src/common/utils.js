@@ -16,8 +16,18 @@ function ptcDelayToMinutes(delay) {
 }
 
 function ptcTimeToStr(time) {
+    if (!time) return time;
+    // If time is already in HH:MM or HH:MM:SS format, return HH:MM directly
+    if (typeof time === 'string' && /^\d{1,2}:\d{2}(:\d{2})?$/.test(time)) {
+        return time.substring(0, 5);
+    }
     const parse = Date.parse(time);
-    return parse ? (new Date(parse)).toLocaleTimeString([], {'timeStyle': 'short'}) : time;
+    if (!parse) return time;
+    const date = new Date(parse);
+    // Use hours/minutes directly to avoid timezone conversion issues
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
 }
 
 function ptcTimeOffset(time, delay) {
